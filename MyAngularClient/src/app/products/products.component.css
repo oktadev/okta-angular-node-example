@@ -1,0 +1,21 @@
+.products {
+  padding: 2rem;
+}
+
+label, input {
+  display: block;
+}
+
+label {
+  margin-bottom: 1rem;
+}
+
+.loading {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+}
