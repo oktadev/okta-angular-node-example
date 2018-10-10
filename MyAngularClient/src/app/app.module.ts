@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductsComponent } from './products/products.component';
 import { HomeComponent } from './home/home.component';
+import { OktaAuthModule } from '@okta/okta-angular';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,11 @@ import { HomeComponent } from './home/home.component';
     MatDividerModule,
     MatProgressSpinnerModule,
     FormsModule,
+    OktaAuthModule.initAuth({
+      issuer: 'https://dev-322018.oktapreview.com/oauth2/default',
+      redirectUri: 'http://localhost:4200/implicit/callback',
+      clientId: '0oagjm272cBGGpUfu0h7'
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
