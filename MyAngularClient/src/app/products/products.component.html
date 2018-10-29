@@ -58,8 +58,8 @@
     <label>Stock Level
       <input type="text" [(ngModel)]="selectedProduct.stock">
     </label>
-    <button mat-flat-button (click)="updateProduct()">{{(selectedProduct.id!==undefined)?'Update':'Create'}}</button>
-    <button mat-flat-button (click)="clearProduct()">Clear</button>
+    <button mat-flat-button color="primary" (click)="updateProduct()">{{(selectedProduct.id!==undefined)?'Update':'Create'}}</button>
+    <button mat-flat-button color="primary" (click)="clearProduct()">Clear</button>
   </div>
   <div class="loading" *ngIf="loading">
     <mat-spinner></mat-spinner>
