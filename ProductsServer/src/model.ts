@@ -2,23 +2,23 @@ import {Entity, PrimaryGeneratedColumn, Column, createConnection, Connection, Re
 
 @Entity()
 export class Product {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    name: string;
+  @Column()
+  name: string;
 
-    @Column()
-    sku: string;
+  @Column()
+  sku: string;
 
-    @Column('text')
-    description: string;
+  @Column('text')
+  description: string;
 
-    @Column()
-    price: number;
+  @Column()
+  price: number;
 
-    @Column()
-    stock: number;
+  @Column()
+  stock: number;
 }
 
 let connection:Connection;
@@ -26,12 +26,12 @@ let connection:Connection;
 export async function getProductRepository(): Promise<Repository<Product>> {
   if (connection===undefined) {
     connection = await createConnection({
-        type: 'sqlite',
-        database: 'myangularapp',
-        synchronize: true,
-        entities: [
-            Product
-        ],
+      type: 'sqlite',
+      database: 'myangularapp',
+      synchronize: true,
+      entities: [
+        Product
+      ],
     });
   }
   return connection.getRepository(Product);

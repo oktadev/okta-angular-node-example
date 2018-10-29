@@ -13,9 +13,10 @@ export class ProductsComponent implements OnInit {
   dataSource = new MatTableDataSource<any>();
 
   selectedProduct: Product = new Product();
-  loading  = false;
+  loading = false;
 
-  constructor(public productService:ProductsService) { }
+  constructor(public productService: ProductsService) {
+  }
 
   ngOnInit() {
     this.refresh();
@@ -38,7 +39,7 @@ export class ProductsComponent implements OnInit {
     await this.refresh();
   }
 
-  editProduct(product:Product) {
+  editProduct(product: Product) {
     this.selectedProduct = product;
   }
 
@@ -46,7 +47,7 @@ export class ProductsComponent implements OnInit {
     this.selectedProduct = new Product();
   }
 
-  async deleteProduct(product:Product) {
+  async deleteProduct(product: Product) {
     this.loading = true;
     if (confirm(`Are you sure you want to delete the product ${product.name}. This cannot be undone.`)) {
       this.productService.deleteProduct(product.id);

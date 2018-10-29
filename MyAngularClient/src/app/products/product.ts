@@ -1,5 +1,5 @@
 export class Product {
-  id?:string;
+  id?: string;
   name: string;
   sku: string;
   description: string;
