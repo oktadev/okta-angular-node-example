@@ -11,14 +11,13 @@ export async function oktaAuth(req:Request, res:Response, next:NextFunction) {
   try {
     const token = (req as any).token;
     if (!token) {
-      return res.status(401).send('Not Auhorised');
+      return res.status(401).send('Not Authorised');
     }
     const jwt = await oktaJwtVerifier.verifyAccessToken(token);
     req.user = {
       uid: jwt.claims.uid,
       email: jwt.claims.sub
     };
-    console.log(req.user);
     next();
   }
   catch (err) {

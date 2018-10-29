@@ -1,9 +1,9 @@
-import { Router, Request, Response, NextFunction} from 'express';
-import { Product, getProductRepository } from './model';
+import { NextFunction, Request, Response, Router } from 'express';
+import { getProductRepository, Product } from './model';
 
-export const router:Router = Router();
+export const router: Router = Router();
 
-router.get('/product', async function(req:Request, res:Response, next:NextFunction) {
+router.get('/product', async function (req: Request, res: Response, next: NextFunction) {
   try {
     const repository = await getProductRepository();
     const allProducts = await repository.find();
@@ -14,7 +14,7 @@ router.get('/product', async function(req:Request, res:Response, next:NextFuncti
   }
 });
 
-router.get('/product/:id', async function(req:Request, res:Response, next:NextFunction) {
+router.get('/product/:id', async function (req: Request, res: Response, next: NextFunction) {
   try {
     const repository = await getProductRepository();
     const product = await repository.find({id: req.params.id});
@@ -25,7 +25,7 @@ router.get('/product/:id', async function(req:Request, res:Response, next:NextFu
   }
 });
 
-router.post('/product', async function(req:Request, res:Response, next:NextFunction) {
+router.post('/product', async function (req: Request, res: Response, next: NextFunction) {
   try {
     const repository = await getProductRepository();
     const product = new Product();
@@ -43,7 +43,7 @@ router.post('/product', async function(req:Request, res:Response, next:NextFunct
   }
 });
 
-router.post('/product/:id', async function(req:Request, res:Response, next:NextFunction) {
+router.post('/product/:id', async function (req: Request, res: Response, next: NextFunction) {
   try {
     const repository = await getProductRepository();
     const product = await repository.findOne({id: req.params.id});
@@ -61,7 +61,7 @@ router.post('/product/:id', async function(req:Request, res:Response, next:NextF
   }
 });
 
-router.delete('/product/:id', async function(req:Request, res:Response, next:NextFunction) {
+router.delete('/product/:id', async function (req: Request, res: Response, next: NextFunction) {
   try {
     const repository = await getProductRepository();
     await repository.delete({id: req.params.id});
