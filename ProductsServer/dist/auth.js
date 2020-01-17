@@ -8,24 +8,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const _env_server_1 = require("./.env.server");
 const OktaJwtVerifier = require('@okta/jwt-verifier');
-const oktaJwtVerifier = new OktaJwtVerifier({
-    clientId: '{clientId}',
-    issuer: 'https://dev-322018.oktapreview.com/oauth2/default'
-});
+const oktaJwtVerifier = new OktaJwtVerifier(Object.assign({}, _env_server_1.ConfigOKTA));
 function oktaAuth(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const token = req.token;
             if (!token) {
-                return res.status(401).send('Not Auhorised');
+                return res.status(401).send('Not Authorised');
             }
             const jwt = yield oktaJwtVerifier.verifyAccessToken(token);
-            req.user = {
+            req["user"] = {
                 uid: jwt.claims.uid,
                 email: jwt.claims.sub
             };
-            console.log(req.user);
             next();
         }
         catch (err) {

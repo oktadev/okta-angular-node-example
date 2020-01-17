@@ -27,7 +27,7 @@ exports.router.get('/product/:id', function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const repository = yield model_1.getProductRepository();
-            const product = yield repository.find({ id: req.params.id });
+            const product = yield repository.find({ id: Number(req.params.id) });
             res.send(product);
         }
         catch (err) {
@@ -38,6 +38,7 @@ exports.router.get('/product/:id', function (req, res, next) {
 exports.router.post('/product', function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            console.log('/product');
             const repository = yield model_1.getProductRepository();
             const product = new model_1.Product();
             product.name = req.body.name;
@@ -57,7 +58,7 @@ exports.router.post('/product/:id', function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const repository = yield model_1.getProductRepository();
-            const product = yield repository.findOne({ id: req.params.id });
+            const product = yield repository.findOne({ id: Number(req.params.id) });
             product.name = req.body.name;
             product.sku = req.body.sku;
             product.description = req.body.description;
@@ -75,7 +76,7 @@ exports.router.delete('/product/:id', function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const repository = yield model_1.getProductRepository();
-            yield repository.delete({ id: req.params.id });
+            yield repository.delete({ id: Number(req.params.id) });
             res.send('OK');
         }
         catch (err) {

@@ -59,3 +59,8 @@ typings/
 
 # next.js build output
 .next
+
+.env.client.js
+.env.server.js
+.env.client.ts
+.env.server.ts

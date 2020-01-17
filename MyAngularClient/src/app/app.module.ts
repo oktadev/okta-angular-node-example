@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ConfigOKTAClient } from './.env.client';
 import {
   MatButtonModule,
   MatDividerModule,
@@ -40,10 +41,7 @@ import { OktaAuthModule } from '@okta/okta-angular';
     MatDividerModule,
     MatProgressSpinnerModule,
     FormsModule,
-    OktaAuthModule.initAuth({
-      issuer: 'https://dev-322018.oktapreview.com/oauth2/default',
-      redirectUri: 'http://localhost:4200/implicit/callback',
-      clientId: '0oagjm272cBGGpUfu0h7'
+    OktaAuthModule.initAuth({...ConfigOKTAClient
     }),
   ],
   providers: [],

@@ -30,6 +30,7 @@ To run the server, cd into the `ProductsServer` directory and run:
 npm i
 npm run build
 npm start
+npm start 
 ```
 
 To run the client, cd into the `MyAngularClient` directory and run:
@@ -49,27 +50,31 @@ To create a new OIDC app on Okta:
 
 #### Server Configuration
 
-Set your domain and copy the `clientId` into `ProductsServer/src/auth.ts`. 
-
-**NOTE:** The value of `{yourOktaDomain}` should be something like `dev-123456.oktapreview`. Make sure you don't include `-admin` in the value!
-
+Create file `ProductsServer/src/.env.server.ts` and input this content:
 ```ts
-const oktaJwtVerifier = new OktaJwtVerifier({
+let ConfigOKTA = {
   clientId: '{clientId}',
   issuer: 'https://{yourOktaDomain}/oauth2/default'
 });
+
+export {ConfigOKTA}
 ```
+Set your domain `yourOktaDomain`  and copy the `clientId` 
+
+**NOTE:** The value of `{yourOktaDomain}` should be something like `dev-123456.oktapreview`. Make sure you don't include `-admin` in the value!
 
 #### Client Configuration
 
-For the client, set the `issuer` and copy the `clientId` into `MyAngularClient/src/app/app.module.ts`.
+For the client, set the `issuer` and copy the `clientId` into `MyAngularClient/src/app/.env.client.ts`.
 
 ```typescript
-OktaAuthModule.initAuth({
+let ConfigOKTAClient = {
   issuer: 'https://{yourOktaDomain}/oauth2/default',
   redirectUri: 'http://localhost:4200/implicit/callback',
   clientId: '{clientId}'
-}),
+};
+
+export {ConfigOKTAClient}
 ```
 
 ## Links
