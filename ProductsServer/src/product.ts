@@ -17,7 +17,7 @@ router.get('/product', async function (req: Request, res: Response, next: NextFu
 router.get('/product/:id', async function (req: Request, res: Response, next: NextFunction) {
   try {
     const repository = await getProductRepository();
-    const product = await repository.find({id: req.params.id});
+    const product = await repository.findOne(req.params.id);
     res.send(product);
   }
   catch (err) {
@@ -46,7 +46,7 @@ router.post('/product', async function (req: Request, res: Response, next: NextF
 router.post('/product/:id', async function (req: Request, res: Response, next: NextFunction) {
   try {
     const repository = await getProductRepository();
-    const product = await repository.findOne({id: req.params.id});
+    const product = await repository.findOne(req.params.id);
     product.name = req.body.name;
     product.sku = req.body.sku;
     product.description = req.body.description;
@@ -64,7 +64,7 @@ router.post('/product/:id', async function (req: Request, res: Response, next: N
 router.delete('/product/:id', async function (req: Request, res: Response, next: NextFunction) {
   try {
     const repository = await getProductRepository();
-    await repository.delete({id: req.params.id});
+    await repository.delete(req.params.id);
     res.send('OK');
   }
   catch (err) {

@@ -13,13 +13,13 @@ export class ProductsService {
   constructor(public oktaAuth: OktaAuthService, private http: HttpClient) {
   }
 
-  private async request(method: string, url: string, data?: any) {
+  private async request(method: string, url: string, data?: any, responseType?: any) {
     const token = await this.oktaAuth.getAccessToken();
 
     console.log('request ' + JSON.stringify(data));
     const result = this.http.request(method, url, {
       body: data,
-      responseType: 'json',
+      responseType: responseType || 'json',
       observe: 'body',
       headers: {
         Authorization: `Bearer ${token}`
@@ -49,6 +49,6 @@ export class ProductsService {
   }
 
   deleteProduct(id: string) {
-    return this.request('delete', `${baseUrl}/product/${id}`);
+    return this.request('delete', `${baseUrl}/product/${id}`, null, 'text');
   }
 }

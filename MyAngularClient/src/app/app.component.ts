@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
 
   constructor(public oktaAuth: OktaAuthService) {
     this.oktaAuth.$authenticationState.subscribe(
-      (isAuthenticated: boolean)  => this.isAuthenticated = isAuthenticated
+      (isAuthenticated: boolean) => this.isAuthenticated = isAuthenticated
     );
   }
 
@@ -20,11 +20,11 @@ export class AppComponent implements OnInit {
     this.isAuthenticated = await this.oktaAuth.isAuthenticated();
   }
 
-  login() {
-    this.oktaAuth.loginRedirect();
+  async login() {
+    await this.oktaAuth.signInWithRedirect();
   }
 
-  logout() {
-    this.oktaAuth.logout('/');
+  async logout() {
+    await this.oktaAuth.signOut();
   }
 }
