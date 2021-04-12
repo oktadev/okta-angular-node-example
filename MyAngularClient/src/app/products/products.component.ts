@@ -50,7 +50,7 @@ export class ProductsComponent implements OnInit {
   async deleteProduct(product: Product) {
     this.loading = true;
     if (confirm(`Are you sure you want to delete the product ${product.name}. This cannot be undone.`)) {
-      this.productService.deleteProduct(product.id);
+      await this.productService.deleteProduct(product.id);
     }
     await this.refresh();
   }

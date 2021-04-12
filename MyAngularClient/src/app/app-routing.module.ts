@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { ProductsComponent } from './products/products.component';
 import { HomeComponent } from './home/home.component';
 import { OktaCallbackComponent, OktaAuthGuard } from '@okta/okta-angular';
@@ -15,7 +15,7 @@ const routes: Routes = [
     canActivate: [OktaAuthGuard]
   },
   {
-    path: 'implicit/callback',
+    path: 'callback',
     component: OktaCallbackComponent
   }
 ];
@@ -24,5 +24,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule { }

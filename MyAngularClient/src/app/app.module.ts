@@ -18,7 +18,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductsComponent } from './products/products.component';
 import { HomeComponent } from './home/home.component';
-import { OktaAuthModule } from '@okta/okta-angular';
+import { OKTA_CONFIG, OktaAuthModule } from '@okta/okta-angular';
+
+const oktaConfig = {
+  issuer: 'https://dev-9323263.okta.com/oauth2/default',
+  clientId: '0oako0qslkbNKA2kg5d6',
+  redirectUri: window.location.origin + '/callback'
+};
 
 @NgModule({
   declarations: [
@@ -40,13 +46,11 @@ import { OktaAuthModule } from '@okta/okta-angular';
     MatDividerModule,
     MatProgressSpinnerModule,
     FormsModule,
-    OktaAuthModule.initAuth({
-      issuer: 'https://dev-322018.oktapreview.com/oauth2/default',
-      redirectUri: 'http://localhost:4200/implicit/callback',
-      clientId: '0oagjm272cBGGpUfu0h7'
-    }),
+    OktaAuthModule
   ],
-  providers: [],
+  providers: [
+    { provide: OKTA_CONFIG, useValue: oktaConfig }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -12,10 +12,6 @@ const app = express()
   .use(oktaAuth)
   .use(productRouter);
 
-app.listen(4201, (err) => {
-  if (err) {
-    return console.log(err);
-  }
-
+app.listen(4201, () => {
   return console.log('My Node App listening on port 4201');
 });
