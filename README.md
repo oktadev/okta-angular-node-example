@@ -41,17 +41,17 @@ ng serve
 
 ### Create a New OIDC App in Okta
 
-To create a new OIDC app on Okta:
+Before you begin, you’ll need a free Okta developer account. Install the [Okta CLI](https://cli.okta.com) and run `okta register` to sign up for a new account. If you already have an account, run `okta login`.
 
-1. Log in to your developer account, navigate to **Applications**, and click on **Add Application**.
-3. Select **Single-Page App** and click **Next**. 
-4. Give the application a name, change all instances of `localhost:8080` to `localhost:4200` and click **Done**.
+Then, run `okta apps create`. Select the default app name, or change it as you see fit. Choose **Single-Page App** and press **Enter**.
+
+Use `http://localhost:4200/callback` for the Redirect URI and accept the default Logout Redirect URI of `http://localhost:4200`.
 
 #### Server Configuration
 
 Set your domain and copy the `clientId` into `ProductsServer/src/auth.ts`. 
 
-**NOTE:** The value of `{yourOktaDomain}` should be something like `dev-123456.oktapreview`. Make sure you don't include `-admin` in the value!
+**NOTE:** The value of `{yourOktaDomain}` should be something like `dev-123456.okta.com`. Make sure you don't include `-admin` in the value!
 
 ```ts
 const oktaJwtVerifier = new OktaJwtVerifier({
@@ -65,11 +65,11 @@ const oktaJwtVerifier = new OktaJwtVerifier({
 For the client, set the `issuer` and copy the `clientId` into `MyAngularClient/src/app/app.module.ts`.
 
 ```typescript
-OktaAuthModule.initAuth({
+const oktaConfig = {
   issuer: 'https://{yourOktaDomain}/oauth2/default',
-  redirectUri: 'http://localhost:4200/implicit/callback',
-  clientId: '{clientId}'
-}),
+  clientId: '{clientId}',
+  redirectUri: window.location.origin + '/callback'
+};
 ```
 
 ## Links
@@ -77,7 +77,7 @@ OktaAuthModule.initAuth({
 This example uses the following open source libraries from Okta:
 
 * [Okta JWT Verifier for Node.js](https://github.com/okta/okta-oidc-js/tree/master/packages/jwt-verifier)
-* [Okta Angular SDK](https://github.com/okta/okta-oidc-js/tree/master/packages/okta-angular)
+* [Okta Angular SDK](https://github.com/okta/okta-angular)
 
 ## Help
 
