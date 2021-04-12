@@ -43,7 +43,7 @@ ng serve
 
 Before you begin, you’ll need a free Okta developer account. Install the [Okta CLI](https://cli.okta.com) and run `okta register` to sign up for a new account. If you already have an account, run `kta login`.
 
-Then, run `kta apps create`. Select the default app name, or change it as you see fit. Choose **Single-Page App** and press **Enter**.
+Then, run `okta apps create`. Select the default app name, or change it as you see fit. Choose **Single-Page App** and press **Enter**.
 
 Use `http://localhost:4200/callback` for the Redirect URI and accept the default Logout Redirect URI of `http://localhost:4200`.
 
